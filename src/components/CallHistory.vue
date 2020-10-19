@@ -9,7 +9,7 @@
       <v-data-table
         :headers="headers"
         :items="calls"
-        :items-per-page="10"
+        :items-per-page="itemsPerPage"
       >
         <template v-slot:[`item.date`]="{ item }">
           <span>Incoming</span><br>
@@ -20,9 +20,9 @@
           <span class="font-weight-bold mr-1">Client:</span>{{ item.client }}<br>
         </template>
         <template v-slot:[`item.call_details`]="{ item }">
-          <span class="mr-6">From:</span><img src="@/assets/us.png">&nbsp;{{ item.from }}<br>
-          <span class="mr-9">To:</span> <img src="@/assets/us.png">&nbsp;{{ item.to }}<br>
-          <span class="mr-6">Rang:</span><img src="@/assets/us.png">&nbsp;{{ item.rang }}<br>
+          <span class="mr-6">From:</span><img src="@/assets/img/us.png">&nbsp;{{ item.from }}<br>
+          <span class="mr-9">To:</span> <img src="@/assets/img/us.png">&nbsp;{{ item.to }}<br>
+          <span class="mr-6">Rang:</span><img src="@/assets/img/us.png">&nbsp;{{ item.rang }}<br>
           <span class="mr-2">Caller ID:</span>{{ item.caller_id }}<br>
           <span class="mr-6">Label:</span>{{ item.label }}<br>
         </template>
@@ -61,7 +61,7 @@
     </v-card-text>
     <v-dialog
       v-model="blackDlgVisiable"
-      max-width="400"
+      :max-width="variables.dlgMaxWidth"
     >
       <v-card>
         <v-card-title class="body-1">
@@ -92,7 +92,7 @@
     </v-dialog>
     <v-dialog
       v-model="noteDlgVisiable"
-      max-width="400"
+      :max-width="variables.dlgMaxWidth"
     >
       <v-card>
         <v-card-title class="body-1">
@@ -132,17 +132,17 @@
 </template>
 
 <script>
+import variables from '@/assets/scss/variable.scss'
+
 export default {
   data () {
     return {
+      variables,
+      itemsPerPage: 10,
       blackDlgVisiable: false,
       noteDlgVisiable: false,
       headers: [
-        {
-          text: 'Date',
-          sortable: false,
-          value: 'date'
-        },
+        { text: 'Date', sortable: false, value: 'date' },
         { text: 'Source', value: 'source', sortable: false },
         { text: 'Call Details', value: 'call_details', sortable: false },
         { text: 'City, State', value: 'city_state', sortable: false },
@@ -262,18 +262,20 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
+@import "@/assets/scss/variable.scss";
 ::v-deep .v-data-table {
   thead th {
-    font-size: 14px !important;
+    font-size: $FS14 !important;
   }
   tbody td {
-    font-size: 12px !important;
+    font-size: $FS12 !important;
     padding: 5px 16px !important;
   }
 }
 ::v-deep .status span {
-  font-size: 12px !important;
+  font-size: $FS12 !important;
 }
 ::v-deep .v-dialog .v-card__text {
   border-top: 1px solid lightgray;

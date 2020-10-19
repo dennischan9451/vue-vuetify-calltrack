@@ -11,7 +11,7 @@
           alt="Dashboard Logo"
           class="shrink mr-2"
           contain
-          src="@/assets/dashboard-logo.png"
+          src="@/assets/img/dashboard-logo.png"
           transition="scale-transition"
           width="100"
         />
@@ -23,8 +23,6 @@
     <div class="d-inline-flex align-center">
       <span class="body-1 mr-1">Hello, Dev</span>
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
         text
         class="px-0"
       >

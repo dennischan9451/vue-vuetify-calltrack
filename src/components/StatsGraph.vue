@@ -45,6 +45,28 @@
 <script>
 import LineChart from './LineChart.js'
 
+const chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    yAxes: [{
+      ticks: {
+        min: 0,
+        precision: 0,
+        fontSize: 12
+      }
+    }],
+    xAxes: [{
+      ticks: {
+        fontSize: 12
+      },
+      gridLines: {
+        display: false
+      }
+    }]
+  }
+}
+
 export default {
   components: {
     LineChart
@@ -76,27 +98,7 @@ export default {
         { text: 'All Time', value: 13 }
       ],
       dataCollection: null,
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          yAxes: [{
-            ticks: {
-              min: 0,
-              precision: 0,
-              fontSize: 12
-            }
-          }],
-          xAxes: [{
-            ticks: {
-              fontSize: 12
-            },
-            gridLines: {
-              display: false
-            }
-          }]
-        }
-      }
+      chartOptions
     }
   },
   created () {
@@ -146,10 +148,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/scss/variable.scss";
 .stats-graph {
-  background: #f1f1f1;
+  background: $statsGraphBgColor;
 }
 ::v-deep .v-label {
-  font-size: 12px !important;
+  font-size: $FS12 !important;
 }
 </style>
